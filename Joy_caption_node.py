@@ -177,6 +177,7 @@ class Joy_caption:
 
         # Tokenize the prompt
         prompt = tokenizer.encode(prompt, return_tensors='pt', padding=False, truncation=False, add_special_tokens=False)
+	prompt = prompt.to(torch.long)
         # Embed image
         with torch.amp.autocast_mode.autocast(str(DEVICE), enabled=True):
             vision_outputs = clip_model(pixel_values=pImge, output_hidden_states=True)
